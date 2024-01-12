@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\GeneralController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [GeneralController::class, 'index'])->name('index');
+Route::post('/form1', [GeneralController::class, 'scrappApi'])->name('scrapper');
+Route::post('/form2', [GeneralController::class, 'exportExcel'])->name('excel');
