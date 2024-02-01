@@ -38,7 +38,7 @@
                                     <select name="provider" id="provider">
                                         <option value="">Selecciona el proveedor</option>
                                         @foreach ($providers as $provider)
-                                            <option value="{{ $provider->id }}">{{ $provider->name }}</option>
+                                            <option value="{{ $provider->name }}">{{ $provider->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -71,7 +71,7 @@
                                     <textarea name="links" id="links" rows="6"
                                     placeholder="Ingresa tus URL como arreglo de textos [ 'href','href' ]"></textarea>
                                 </div>
-                                
+
                                 <div class="Content__scraperForm--sendButton">
                                     <button type="submit">Scrap</button>
                                 </div>

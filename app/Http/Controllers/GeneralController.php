@@ -27,12 +27,13 @@ class GeneralController extends Controller
     public function scrappApi(Request $request)
     {
             // Get data from the form
-        $name = $request->input('name');
+        $name = $request->input('provider');
         $type = $request->input('type');
         $value = '';
         switch ($type) {
             case 'search':
-                $value = $request->input('search');
+                $s = $request->input('search');
+                $value = explode(",",$s);
                 break;
             case 'links':
                 $value = $request->input('links');
@@ -53,7 +54,7 @@ class GeneralController extends Controller
             ]
         ];
         dispatch(new ScrappJob($payload));
-        return redirect()->route('index')->with('success', 'Job dispatched successfully');
+        return redirect()->route('index');
     }
 
     public function exportExcel(Request $request)
@@ -70,6 +71,6 @@ class GeneralController extends Controller
         $export = new ScrappingExport($value);
 
         // Download the Excel file
-        return Excel::download($export, 'archivo.xlsx');
+        return Excel::download($export, $value.'.xlsx');
     }
 }
